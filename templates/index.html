@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Management System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Employee Management System</h1>
+
+    <div class="card">
+
+        <h2>Add Employee</h2>
+
+        <form action="/add" method="POST">
+
+            <input type="text"
+                   name="name"
+                   placeholder="Employee Name"
+                   required>
+
+            <input type="text"
+                   name="employee_id"
+                   placeholder="Employee ID"
+                   required>
+
+            <input type="text"
+                   name="department"
+                   placeholder="Department"
+                   required>
+
+            <input type="email"
+                   name="email"
+                   placeholder="Email"
+                   required>
+
+            <input type="number"
+                   name="salary"
+                   placeholder="Salary"
+                   required>
+
+            <button type="submit">
+                Add Employee
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Employee List</h2>
+
+        <table>
+
+            <tr>
+                <th>Name</th>
+                <th>Employee ID</th>
+                <th>Department</th>
+                <th>Email</th>
+                <th>Salary</th>
+                <th>Action</th>
+            </tr>
+
+            {% for employee in employees %}
+
+            <tr>
+
+                <td>{{ employee.name }}</td>
+
+                <td>{{ employee.employee_id }}</td>
+
+                <td>{{ employee.department }}</td>
+
+                <td>{{ employee.email }}</td>
+
+                <td>{{ employee.salary }}</td>
+
+                <td>
+                    <a href="/edit/{{ employee.employee_id }}">
+                        Edit
+                    </a>
+
+                    |
+
+                    <a href="/delete/{{ employee.employee_id }}">
+                        Delete
+                    </a>
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>
